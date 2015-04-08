@@ -1,6 +1,6 @@
 # react-native-addressbook-ios
 
-This is a React [Native Module](http://facebook.github.io/react-native/docs/nativemodulesios.html#content) for accessing an iOS AddressBook
+This is a React [Native Module](http://facebook.github.io/react-native/docs/nativemodulesios.html#content) for accessing an iOS [AddressBook](https://developer.apple.com/library/ios/documentation/ContactData/Conceptual/AddressBookProgrammingGuideforiPhone/Introduction.html)
 
 Currently only supports READ access but hope to add full CRUD support
 
