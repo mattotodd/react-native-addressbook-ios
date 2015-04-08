@@ -102,8 +102,12 @@
     CFStringRef phoneLabelRef = ABMultiValueCopyLabelAtIndex(multiPhones, i);
     NSString *phoneNumber = (__bridge NSString *) phoneNumberRef;
     NSString *phoneLabel = (__bridge NSString *) ABAddressBookCopyLocalizedLabel(phoneLabelRef);
-    //CFRelease(phoneNumberRef);
-    //CFRelease(phoneLabelRef);
+    if(phoneNumberRef){
+      CFRelease(phoneNumberRef);
+    }
+    if(phoneLabelRef){
+      CFRelease(phoneLabelRef);
+    }
     NSMutableDictionary* phone = [NSMutableDictionary dictionary];
     [phone setObject: phoneNumber forKey:@"phoneNumber"];
     [phone setObject: phoneLabel forKey:@"phoneLabel"];
@@ -122,8 +126,12 @@
     CFStringRef emailLabelRef = ABMultiValueCopyLabelAtIndex(multiEmails, i);
     NSString *emailAddress = (__bridge NSString *) emailAddressRef;
     NSString *emailLabel = (__bridge NSString *) ABAddressBookCopyLocalizedLabel(emailLabelRef);
-    //CFRelease(emailAddressRef);
-    //CFRelease(emailLabelRef);
+    if(emailAddressRef){
+      CFRelease(emailAddressRef);
+    }
+    if(emailLabelRef){
+      CFRelease(emailLabelRef);
+    }
     NSMutableDictionary* email = [NSMutableDictionary dictionary];
     [email setObject: emailAddress forKey:@"emailAddress"];
     [email setObject: emailLabel forKey:@"emailLabel"];
