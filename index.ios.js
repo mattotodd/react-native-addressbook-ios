@@ -91,8 +91,6 @@ var ContactsView = React.createClass({
     var self = this;
     this._pressData = {};
     AddressBook.getAllContacts((err, results) => {
-      console.log("Got here")
-      console.log(results);
       self.setState({dataSource:self.state.dataSource.cloneWithRows(results)});
     });
   },
