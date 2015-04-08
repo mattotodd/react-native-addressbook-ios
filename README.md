@@ -20,7 +20,7 @@ AddressBook.requestAuth(callbackFunction); - Requests permission to read from ad
 
 AddressBook.getAllContacts(callbackFunction); - Returns an array of Contact objects
 
-```
+```javascript
 var React = require('react-native');
 var AddressBook = require('NativeModules').AddressBook;
 
