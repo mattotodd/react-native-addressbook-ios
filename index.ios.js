@@ -44,7 +44,7 @@ var InitialView = React.createClass({
 
     render: function() {
       var options;
-      if(this.state.addressBookAccess == "authorized"){
+      if(this.state.addressBookAccess == AddressBook.Authorized){
         options = (
           <View style={styles.button}>
             <TouchableHighlight onPress={this.viewContacts}>
@@ -78,11 +78,6 @@ var InitialView = React.createClass({
 });
 
 var ContactsView = React.createClass({
-  statics: {
-    title: '<ListView> - Simple',
-    description: 'Performant, scrollable list of data.'
-  },
-
   getInitialState: function() {
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     return {
@@ -117,7 +112,7 @@ var ContactsView = React.createClass({
     var rowHash = Math.abs(hashCode(rowData));
     var phone = null;
     var email = null;
-    var imageSource = (!rowData.thumbnailPath) ? require('image!userIcon'): {uri:rowData.thumbnailPath, isStatic:true};
+    var imageSource = (!rowData.thumbnailPath) ? require('image!userSilhouette'): {uri:rowData.thumbnailPath, isStatic:true};
     if(rowData.phoneNumbers.length > 0){
       phone = (
         <Text style={styles.text}>

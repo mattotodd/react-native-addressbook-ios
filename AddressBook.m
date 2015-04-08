@@ -10,6 +10,15 @@
 
 @implementation AddressBook
 
+- (NSDictionary *)constantsToExport
+{
+  return @{
+           @"Denied": @"denied",
+           @"Authorized": @"authorized",
+           @"Undetermined": @"undetermined"
+  };
+}
+
 - (void)hasABAuth:(RCTResponseSenderBlock)callback  {
   RCT_EXPORT(hasAuth);
   if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusDenied ||
