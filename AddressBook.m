@@ -61,6 +61,9 @@
     }
     currentIndex++;
   }
+  if(addressBookRef){
+    CFRelease(addressBookRef);
+  }
   callback(@[[NSNull null], serializedContacts]);
 }
 
