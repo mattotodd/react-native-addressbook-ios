@@ -45,7 +45,7 @@
 -(void)getAllContacts: (RCTResponseSenderBlock)callback  {
   RCT_EXPORT();
   ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, nil);
-  NSArray *allContacts = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBookRef, NULL, kABPersonSortByLastName);
+  NSArray *allContacts = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBookRef, NULL, kABPersonSortByLastName);
   
   int totalContacts = (int)[allContacts count];
   int currentIndex = 0;
@@ -70,9 +70,9 @@
 {
   NSMutableDictionary* contact = [NSMutableDictionary dictionary];
   
-  NSString *firstName = (__bridge NSString *)(ABRecordCopyValue(person, kABPersonFirstNameProperty));
-  NSString *lastName = (__bridge NSString *)(ABRecordCopyValue(person, kABPersonLastNameProperty));
-  NSString *middleName = (__bridge NSString *)(ABRecordCopyValue(person, kABPersonMiddleNameProperty));
+  NSString *firstName = (__bridge_transfer NSString *)(ABRecordCopyValue(person, kABPersonFirstNameProperty));
+  NSString *lastName = (__bridge_transfer NSString *)(ABRecordCopyValue(person, kABPersonLastNameProperty));
+  NSString *middleName = (__bridge_transfer NSString *)(ABRecordCopyValue(person, kABPersonMiddleNameProperty));
   
   BOOL hasName = false;
   
@@ -102,8 +102,8 @@
   for(CFIndex i=0;i<ABMultiValueGetCount(multiPhones);i++) {
     CFStringRef phoneNumberRef = ABMultiValueCopyValueAtIndex(multiPhones, i);
     CFStringRef phoneLabelRef = ABMultiValueCopyLabelAtIndex(multiPhones, i);
-    NSString *phoneNumber = (__bridge NSString *) phoneNumberRef;
-    NSString *phoneLabel = (__bridge NSString *) ABAddressBookCopyLocalizedLabel(phoneLabelRef);
+    NSString *phoneNumber = (__bridge_transfer NSString *) phoneNumberRef;
+    NSString *phoneLabel = (__bridge_transfer NSString *) ABAddressBookCopyLocalizedLabel(phoneLabelRef);
     if(phoneNumberRef){
       CFRelease(phoneNumberRef);
     }
@@ -126,8 +126,8 @@
   for(CFIndex i=0;i<ABMultiValueGetCount(multiEmails);i++) {
     CFStringRef emailAddressRef = ABMultiValueCopyValueAtIndex(multiEmails, i);
     CFStringRef emailLabelRef = ABMultiValueCopyLabelAtIndex(multiEmails, i);
-    NSString *emailAddress = (__bridge NSString *) emailAddressRef;
-    NSString *emailLabel = (__bridge NSString *) ABAddressBookCopyLocalizedLabel(emailLabelRef);
+    NSString *emailAddress = (__bridge_transfer NSString *) emailAddressRef;
+    NSString *emailLabel = (__bridge_transfer NSString *) ABAddressBookCopyLocalizedLabel(emailLabelRef);
     if(emailAddressRef){
       CFRelease(emailAddressRef);
     }
@@ -156,7 +156,7 @@
       return nil;
     }
     
-    NSData* data = (__bridge NSData*)photoDataRef;
+    NSData* data = (__bridge_transfer NSData*)photoDataRef;
     NSString* tempPath = [NSTemporaryDirectory()stringByStandardizingPath];
     NSError* err = nil;
     NSString* tempfilePath = [NSString stringWithFormat:@"%@/thumbimage_XXXXX", tempPath];
