@@ -45,8 +45,7 @@
 -(void)getAllContacts: (RCTResponseSenderBlock)callback  {
   RCT_EXPORT();
   ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, nil);
-  //ABRecordRef source = ABAddressBookCopyDefaultSource(addressBookRef);
-  NSArray *allContacts = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBookRef);
+  NSArray *allContacts = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBookRef, NULL, kABPersonSortByLastName);
   
   int totalContacts = (int)[allContacts count];
   int currentIndex = 0;
