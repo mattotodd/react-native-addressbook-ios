@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "RCTBridgeModule.h"
 
-@interface AddressBook : NSObject <RCTBridgeModule>
+@interface RCTAddressBook : NSObject <RCTBridgeModule>
 
 @end
