@@ -14,9 +14,9 @@ Make sure you have already [installed React Native](http://facebook.github.io/re
 
 This library currently has three methods
 
-AddressBook.hasAuth(callbackFunction); - Checks if app has permission to read address book
+AddressBook.checkPermissions(callbackFunction); - Checks if app has permission to read address book
 
-AddressBook.requestAuth(callbackFunction); - Requests permission to read from address book
+AddressBook.requestPermissions(callbackFunction); - Requests permission to read from address book
 
 AddressBook.getAllContacts(callbackFunction); - Returns an array of Contact objects
 
