@@ -10,6 +10,8 @@
 
 @implementation RCTAddressBook
 
+RCT_EXPORT_MODULE(@"AddressBook");
+
 - (NSDictionary *)constantsToExport
 {
   return @{

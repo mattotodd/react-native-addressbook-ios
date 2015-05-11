@@ -22,7 +22,7 @@ AddressBook.getAllContacts(callbackFunction); - Returns an array of Contact obje
 
 ```javascript
 var React = require('react-native');
-var AddressBook = require('NativeModules').RCTAddressBook;
+var AddressBook = require('NativeModules').AddressBook;
 
 //inside your code where you would like to use the address book
 
