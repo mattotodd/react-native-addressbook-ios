@@ -26,30 +26,30 @@ var AddressBook = require('NativeModules').AddressBook;
 
 //inside your code where you would like to use the address book
 
-AddressBook.checkPermissions((error, authStatus) => {
+AddressBook.checkPermissions((error, permissions) => {
     if(error){
     	// there was an error making this call
     	return;
-	}else if(authStatus == AddressBook.Denied){
+	}else if(permissions.contacts == AddressBook.Denied){
 		// the user has previously denied access to the address book
 		return;
-	}else if(authStatus == AddressBook.Authorized){
+	}else if(permissions.contacts == AddressBook.Authorized){
 		// the user has previously granted access to the address book
 		return;
-	}else if(authStatus == AddressBook.Undetermined){
+	}else if(permissions.contacts == AddressBook.Undetermined){
 		// the app has never asked for permission
 		return;
 	}
 });
 
-AddressBook.requestPermissions((error, authStatus) => {
+AddressBook.requestPermissions((error, permissions) => {
     if(error){
     	// there was an error making this call
     	return;
-	}else if(authStatus == AddressBook.Denied){
+	}else if(permissions.contacts == AddressBook.Denied){
 		// the user denied access to the address book just now
 		return;
-	}else if(authStatus == AddressBook.Authorized){
+	}else if(permissions.contacts == AddressBook.Authorized){
 		// the user has granted access to the address book just now
 		return;
 	}
