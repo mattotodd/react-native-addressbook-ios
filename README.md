@@ -6,7 +6,7 @@ Currently only supports READ access but hope to add full CRUD support
 
 ## Demo
 
-Make sure you have already [installed React Native](http://facebook.github.io/react-native/docs/getting-started.html#content) and then open the examples/RCTAddressBook.xcodeproj and click Run
+Make sure you have already [installed React Native](http://facebook.github.io/react-native/docs/getting-started.html#content) and then open examples/RCTAddressBook.xcodeproj and click Run
 
 ## Usage
 
