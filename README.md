@@ -26,7 +26,7 @@ var AddressBook = require('NativeModules').AddressBook;
 
 //inside your code where you would like to use the address book
 
-AddressBook.hasAuth((error, authStatus) => {
+AddressBook.checkPermissions((error, authStatus) => {
     if(error){
     	// there was an error making this call
     	return;
@@ -42,7 +42,7 @@ AddressBook.hasAuth((error, authStatus) => {
 	}
 });
 
-AddressBook.requestAuth((error, authStatus) => {
+AddressBook.requestPermissions((error, authStatus) => {
     if(error){
     	// there was an error making this call
     	return;
