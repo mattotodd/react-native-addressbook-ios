@@ -20,25 +20,25 @@
 }
 
 - (void)hasABAuth:(RCTResponseSenderBlock)callback  {
-  RCT_EXPORT(hasAuth);
-  if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusDenied ||
-    ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusRestricted){
-    callback(@[[NSNull null], @"denied"]);
-  } else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized){
-    callback(@[[NSNull null], @"authorized"]);
-  } else { //ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined
-    callback(@[[NSNull null], @"undetermined"]);
-  }
+  RCT_EXPORT(checkPermissions);
+  NSMutableDictionary *permissions = [[NSMutableDictionary alloc] init];
+  ABAuthorizationStatus currentStatus = ABAddressBookGetAuthorizationStatus();
+  permissions[@"contacts"] = @"undetermined";
+  if (currentStatus== kABAuthorizationStatusDenied || currentStatus == kABAuthorizationStatusRestricted){
+    permissions[@"contacts"] = @"denied";
+  } else if (currentStatus == kABAuthorizationStatusAuthorized){
+    permissions[@"contacts"] = @"authorized";
+  } 
+
+  callback(@[[NSNull null], permissions]);
 }
 
 - (void)requestABAuth:(RCTResponseSenderBlock)callback  {
-  RCT_EXPORT(requestAuth);
+  RCT_EXPORT(requestPermissions);
   ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
-    if (!granted){
-      callback(@[[NSNull null], @"denied"]);
-      return;
-    }
-    callback(@[[NSNull null], @"authorized"]);
+    NSMutableDictionary *permissions = [[NSMutableDictionary alloc] init];
+    permissions[@"contacts"] = (!granted) ? @"denied" : @"authorized";
+    callback(@[[NSNull null], permissions]);
   });
 }
 
